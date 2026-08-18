@@ -85,8 +85,21 @@ wtrm() {
     return 1
   }
 
-  local workspace=$HERDR_WORKSPACE_ID
+  local workspace=$HERDR_WORKSPACE_ID main_workspace
+  main_workspace=$(herdr workspace list | jq -r --arg id "$workspace" '
+    .result.workspaces as $workspaces
+    | ($workspaces[] | select(.workspace_id == $id).worktree.repo_key) as $repo
+    | $workspaces[]
+    | select(.worktree.repo_key == $repo and (.worktree.is_linked_worktree | not))
+    | .workspace_id
+  ') || return
+  [[ -n $main_workspace ]] || {
+    print -u2 'wtrm: main Herdr space not found'
+    return 1
+  }
+
   wt remove --force-delete --foreground || return
+  herdr workspace focus "$main_workspace" || return
   herdr workspace close "$workspace"
 }
 

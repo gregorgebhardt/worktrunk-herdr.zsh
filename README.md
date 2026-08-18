@@ -3,7 +3,7 @@
 Zsh commands for opening [Worktrunk](https://worktrunk.dev) worktrees as
 [Herdr](https://herdr.dev) spaces.
 
-Requires `zsh`, `git`, `wt`, `herdr`, and `gh` for `wti`.
+Requires `zsh`, `git`, `wt`, `herdr`, `jq`, and `gh` for `wti`.
 
 ## Install
 
