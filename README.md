@@ -1,6 +1,7 @@
 # worktrunk-herdr.zsh
 
-Zsh commands for opening Worktrunk worktrees as Herdr spaces.
+Zsh commands for opening [Worktrunk](https://worktrunk.dev) worktrees as
+[Herdr](https://herdr.dev) spaces.
 
 Requires `zsh`, `git`, `wt`, `herdr`, and `gh` for `wti`.
 
@@ -9,7 +10,7 @@ Requires `zsh`, `git`, `wt`, `herdr`, and `gh` for `wti`.
 With Antidote:
 
 ```zsh
-your-github-user/worktrunk-herdr.zsh
+gregorgebhardt/worktrunk-herdr.zsh
 ```
 
 Or source `worktrunk-herdr.plugin.zsh` directly.
