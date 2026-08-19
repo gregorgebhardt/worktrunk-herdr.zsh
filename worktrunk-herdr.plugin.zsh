@@ -1,5 +1,7 @@
 #!/bin/zsh
 
+unalias wtc wtco wti wtrm 2>/dev/null
+
 _wth_open() {
   local repo=$1 label=$2
   shift 2
