@@ -5,15 +5,47 @@ Zsh commands for opening [Worktrunk](https://worktrunk.dev) worktrees as
 
 Requires `zsh`, `git`, `wt`, `herdr`, `jq`, and `gh` for `wti`.
 
-## Install
+## Installation
 
-With Antidote:
+### Antidote
 
 ```zsh
 gregorgebhardt/worktrunk-herdr.zsh
 ```
 
-Or source `worktrunk-herdr.plugin.zsh` directly.
+### Zinit
+
+```zsh
+zinit light gregorgebhardt/worktrunk-herdr.zsh
+```
+
+### zplug
+
+```zsh
+zplug "gregorgebhardt/worktrunk-herdr.zsh"
+```
+
+### Antigen
+
+```zsh
+antigen bundle gregorgebhardt/worktrunk-herdr.zsh
+```
+
+### Oh My Zsh
+
+```zsh
+git clone https://github.com/gregorgebhardt/worktrunk-herdr.zsh \
+  "${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/plugins/worktrunk-herdr"
+```
+
+Then add `worktrunk-herdr` to `plugins=(...)` in `.zshrc`.
+
+### Direct
+
+```zsh
+git clone https://github.com/gregorgebhardt/worktrunk-herdr.zsh ~/.worktrunk-herdr.zsh
+source ~/.worktrunk-herdr.zsh/worktrunk-herdr.plugin.zsh
+```
 
 ## Commands
 
