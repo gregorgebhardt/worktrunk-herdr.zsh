@@ -10,6 +10,24 @@ _wth_open() {
     --label "$label" --focus
 }
 
+_wth_prune_opencode_permissions() {
+  emulate -L zsh
+  (( $+commands[opencode] )) || return 0
+
+  local id action resource base
+  opencode api get /api/project 2>/dev/null | jq -r '.[].id' |
+    xargs -P 16 -I{} opencode api get '/api/permission/saved?projectID={}' 2>/dev/null |
+    jq -r '.data[]
+      | select(.action == "external_directory" or .action == "read" or .action == "edit")
+      | [.id, .action, .resource] | @tsv' |
+    while IFS=$'\t' read -r id action resource; do
+      base=${resource%/\*}
+      [[ $base == /* && $base != *[*?]* && ! -e $base ]] || continue
+      opencode api delete "/api/permission/saved/$id" >/dev/null 2>&1 &&
+        print -r -- "Removed stale OpenCode permission: $action $resource"
+    done
+}
+
 wtc() {
   emulate -L zsh
   (( $# == 1 )) || { print -u2 'usage: wtc <branch>'; return 2; }
@@ -101,6 +119,7 @@ wtrm() {
   }
 
   wt remove --force-delete --foreground || return
+  _wth_prune_opencode_permissions
   herdr workspace focus "$main_workspace" || return
   herdr workspace close "$workspace"
 }

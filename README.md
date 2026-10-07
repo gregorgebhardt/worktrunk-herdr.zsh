@@ -60,4 +60,6 @@ wtrm                     # Remove worktree and branch, then close the space
 ```
 
 Run these commands inside Herdr. `wtrm` protects dirty worktrees but deletes
-the local branch even when it has not been merged.
+the local branch even when it has not been merged. If `opencode` is installed,
+`wtrm` also removes saved OpenCode permissions for directories that no longer
+exist.
